@@ -14,14 +14,9 @@ object Day2 extends App {
      (e.count(x => x > 0 && x <=  3) == e.length)
   }
 
-  val r1 = reports.map(r => isSafe(r)).count(x => x)
+  println(reports.map(r => isSafe(r)).count(x => x))
 
-  println(r1)
-
-  val r2 = reports.map{r => 
-                          val rr = for(i <- 0 until r.length) yield r.patch(i, Nil, 1)
-                          rr.map(rrr => isSafe(rrr)).contains(true)
-                      }.count(x => x)
-
-  println(r2)
+  println(reports.map{r => (for(i <- 0 until r.length) yield r.patch(i, Nil, 1))
+                          .map(rrr => isSafe(rrr)).contains(true)
+                     }.count(x => x))
 }
